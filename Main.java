@@ -1,7 +1,4 @@
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-
 import javax.swing.*;
 
 import vistas.LoginView;
@@ -9,31 +6,28 @@ import vistas.BannerView;
 
 public class Main {
     public static void main(String[] args) {
-        // 1. Crear una ventana (JFrame)
+        // Crear ventana
         JFrame miVentana = new JFrame();
-        miVentana.setTitle("Mi Ventana");  // Establece el título
-        miVentana.setSize(1000, 800); 
-        miVentana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    // Establece el tamaño (ancho, alto)
+        miVentana.setTitle("Mi Ventana");
+        miVentana.setSize(1000, 800);
+        miVentana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         miVentana.setLayout(new BorderLayout());
-        
-        JPanel panelBanner = new JPanel();
-        
-        panelBanner.setPreferredSize(new Dimension(500,800));
-        panelBanner.setOpaque(true);
-        panelBanner.setBackground(Color.RED);
-        miVentana.add(panelBanner ,BorderLayout.WEST);
 
+        // Agregar banner rojo a la izquierda
+        BannerView panelBannerView = new BannerView();
+        miVentana.add(panelBannerView.getPanel(), BorderLayout.WEST);
 
+        // Agregar login centrado
+        LoginView panelLogin = new LoginView();
 
-LoginView panelLogin = new LoginView();
-miVentana.add(panelLogin.getPanel(), BorderLayout.CENTER);
+        // Envolver el login en un JPanel con GridBagLayout para centrarlo
+        JPanel centro = new JPanel(new java.awt.GridBagLayout());
+        centro.setBackground(java.awt.Color.WHITE);
+        centro.add(panelLogin.getPanel());
 
+        miVentana.add(centro, BorderLayout.CENTER);
 
-
-
-// 3. Hacer visible la ventana
-miVentana.setVisible(true);
-
-
+        // Mostrar ventana
+        miVentana.setVisible(true);
     }
 }
