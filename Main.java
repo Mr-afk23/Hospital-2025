@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import javax.swing.*;
 
 import vistas.LoginView;
+import vistas.BannerView;
 
 public class Main {
     public static void main(String[] args) {

@@ -63,7 +63,7 @@ panelBoton.setOpaque(false); // Para mantener fondo blanco del padre
 panelBoton.setMaximumSize(new Dimension(500, 40));
 panelBoton.setPreferredSize(new Dimension(500, 40));
 panelBoton.setAlignmentX(Component.CENTER_ALIGNMENT); // Centra el subpanel en el panelLogin
-
+ 
 // Crear el botón
 JButton entradaInicio = new JButton("Inicio");
 entradaInicio.setPreferredSize(new Dimension(100, 30));
