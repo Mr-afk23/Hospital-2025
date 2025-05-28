@@ -4,6 +4,11 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
+import java.awt.Desktop.Action;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import ventanas.Dashboard;
+
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -13,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 public class LoginView {
     private JPanel panelLogin;
@@ -68,6 +74,22 @@ panelBoton.setAlignmentX(Component.CENTER_ALIGNMENT); // Centra el subpanel en e
 JButton entradaInicio = new JButton("Inicio");
 entradaInicio.setPreferredSize(new Dimension(100, 30));
 entradaInicio.setMaximumSize(new Dimension(100, 30));
+entradaInicio.addActionListener(new ActionListener(){
+    @Override 
+    public void actionPerformed(ActionEvent e){
+        System.out.println("Botòn Precionado");
+        
+        Component comp = (Component) e.getSource();
+        JFrame ventanaPadre = (JFrame) SwingUtilities.getWindowAncestor(comp);
+        ventanaPadre.dispose();
+
+
+   new Dashboard();
+   
+        
+    } 
+
+});
 
 // Poner "pegamento" a la izquierda para empujar el botón a la derecha dentro del panelBoton
 panelBoton.add(Box.createHorizontalGlue());
