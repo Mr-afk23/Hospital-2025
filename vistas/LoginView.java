@@ -7,7 +7,10 @@ import java.awt.GridBagLayout;
 import java.awt.Desktop.Action;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import ventanas.Dashboard;
+import ventanas.Dashboard;
+import control.LoginControler;
 
 
 import javax.swing.BorderFactory;
@@ -51,12 +54,12 @@ entradaCorreo.setMaximumSize(new Dimension(500,30));
 
 // Entrada de cotraseña
 
-JTextField entradaContraseña = new JTextField("Contraseña :  ");
-entradaContraseña.setPreferredSize(new Dimension(250,50));
-panelLogin.add(entradaContraseña);
-entradaContraseña.setAlignmentX(Component.CENTER_ALIGNMENT);
+JTextField entradaContra = new JTextField("Contraseña :  ");
+entradaContra.setPreferredSize(new Dimension(250,50));
+panelLogin.add(entradaContra);
+entradaContra.setAlignmentX(Component.CENTER_ALIGNMENT);
 panelLogin.add(Box.createRigidArea(new Dimension(0, 20)));
-entradaContraseña.setMaximumSize(new Dimension(500,20));
+entradaContra.setMaximumSize(new Dimension(500,20));
 
 // Entrada Inicio
 
@@ -69,7 +72,8 @@ panelBoton.setOpaque(false); // Para mantener fondo blanco del padre
 panelBoton.setMaximumSize(new Dimension(500, 40));
 panelBoton.setPreferredSize(new Dimension(500, 40));
 panelBoton.setAlignmentX(Component.CENTER_ALIGNMENT); // Centra el subpanel en el panelLogin
- 
+
+
 // Crear el botón
 JButton entradaInicio = new JButton("Inicio");
 entradaInicio.setPreferredSize(new Dimension(100, 30));
@@ -78,10 +82,20 @@ entradaInicio.addActionListener(new ActionListener(){
     @Override 
     public void actionPerformed(ActionEvent e){
         System.out.println("Botòn Precionado");
-        
-        Component comp = (Component) e.getSource();
-        JFrame ventanaPadre = (JFrame) SwingUtilities.getWindowAncestor(comp);
-        ventanaPadre.dispose();
+
+
+        // Recuperar datos 
+        String entradUsuario =entradaCorreo.getText();
+        String entradaContrasenna = entradaContra.getText();
+
+
+        if (new LoginControler().validacionDatos(entradUsuario, entradaContrasenna)){ {
+            
+            
+            Component comp = (Component) e.getSource();
+            JFrame ventanaPadre = (JFrame) SwingUtilities.getWindowAncestor(comp);
+            ventanaPadre.dispose();
+     
 
 
    new Dashboard();
@@ -89,7 +103,7 @@ entradaInicio.addActionListener(new ActionListener(){
         
     } 
 
-});
+    }}});
 
 // Poner "pegamento" a la izquierda para empujar el botón a la derecha dentro del panelBoton
 panelBoton.add(Box.createHorizontalGlue());
